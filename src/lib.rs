@@ -39,6 +39,8 @@ pub mod bloom;
 pub mod sram;
 pub mod hdc;
 pub mod judge;
+pub mod simd_avx512;
+pub mod auto;
 pub mod simd;
 
 pub use fingerprint::fingerprint;
@@ -47,6 +49,8 @@ pub use sram::{SramImage, SramRecord, SramImageBuilder};
 pub use hdc::{HyperVector, permute_sequence, bundle_words};
 pub use judge::{judge, judge_detailed, judge_batch, DEFAULT_THRESHOLD, MAX_THRESHOLD, Judgment};
 pub use simd::{SimdBatch, SimdMode, BatchResult, batch_judge, batch_judge_multi};
+pub use simd_avx512::{has_avx512_bitalg, batch_compare_avx512};
+pub use auto::AutoBatch;
 
 /// Lesson ID type alias for clarity
 pub type LessonId = u32;
