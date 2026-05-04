@@ -1,0 +1,40 @@
+[package]
+name = "superinstance-hdc-core"
+version = "0.1.0"
+edition = "2021"
+description = "Hyperdimensional Computing Core for bit-level agent cognition"
+license = "MIT"
+repository = "https://github.com/SuperInstance/superinstance-hdc-core"
+keywords = ["hdc", "hyperdimensional", "memory", "sram", "fingerprint"]
+categories = ["algorithms", "embedded", "no-std"]
+
+[dependencies]
+murmurhash = "0.1"
+memmap2 = "0.9"
+thiserror = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+structopt = "0.3"
+termcolor = "1.2"
+
+[dev-dependencies]
+tempfile = "3.10"
+
+[[example]]
+name = "quickstart"
+path = "examples/quickstart.rs"
+
+[[bin]]
+name = "bake"
+path = "src/bin/bake.rs"
+
+[[bin]]
+name = "judge"
+path = "src/bin/judge.rs"
+
+[[bin]]
+name = "monitor"
+path = "src/bin/monitor.rs"
+
+[profile.release]
+opt-level = 3
+lto = true
