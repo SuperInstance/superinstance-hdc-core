@@ -5,13 +5,12 @@
 //! MurmurHash3 is a fast, non-crypto hash function ideal for generating
 //! deterministic 64-bit fingerprints from arbitrary text.
 
-use murmurhash::sum128with_seed;
+use murmurhash::sum64with_seed;
 
 /// Generate a 64-bit fingerprint for the given text using MurmurHash3.
 ///
-/// This function uses the x64_128 variant and extracts the lower 64 bits
-/// to produce a fast, deterministic hash suitable for Bloom filters and
-/// SRAM record matching.
+/// This function uses MurmurHash3 64-bit variant to produce a fast,
+/// deterministic hash suitable for Bloom filters and SRAM record matching.
 ///
 /// # Arguments
 ///
@@ -32,9 +31,8 @@ use murmurhash::sum128with_seed;
 /// ```
 #[inline]
 pub fn fingerprint(text: &str, seed: u64) -> u64 {
-    // Use MurmurHash3 x64_128 and take lower 64 bits
-    let (low, _high) = sum128with_seed(text.as_bytes(), seed);
-    low
+    // Use MurmurHash3 64-bit variant
+    sum64with_seed(text.as_bytes(), seed)
 }
 
 /// Generate multiple fingerprints for the same text with different seeds.
