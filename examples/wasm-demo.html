@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HDC WASM Demo</title>
+    <style>
+        body { font-family: monospace; max-width: 800px; margin: 40px auto; }
+        input { font-family: monospace; width: 300px; }
+        button { font-family: monospace; padding: 8px 16px; }
+        .result { background: #f0f0f0; padding: 12px; margin: 8px 0; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <h1>SuperInstance HDC — Browser Demo</h1>
+    <p>MurmurHash3 fingerprinting + 1024-bit hypervectors, compiled to WASM.</p>
+    
+    <h2>Fingerprint</h2>
+    <input type="text" id="fp-text" value="hello world" />
+    <button onclick="doFingerprint()">Fingerprint</button>
+    <div class="result" id="fp-result"></div>
+    
+    <h2>Hypervector Similarity</h2>
+    <input type="text" id="hv-a" value="agent capability" />
+    <input type="text" id="hv-b" value="agent skill" />
+    <button onclick="doSimilarity()">Compare</button>
+    <div class="result" id="hv-result"></div>
+    
+    <script>
+        // Placeholder: replace with actual WASM module load
+        // const wasm = await WebAssembly.instantiateStreaming(fetch('./superinstance_hdc_core.wasm'));
+        
+        function doFingerprint() {
+            const text = document.getElementById('fp-text').value;
+            // wasm.fingerprint(text, 0xDEADBEEF)
+            document.getElementById('fp-result').innerText = 
+                `Text: "${text}"\nFingerprint: (load WASM module to see)`;
+        }
+        
+        function doSimilarity() {
+            const a = document.getElementById('hv-a').value;
+            const b = document.getElementById('hv-b').value;
+            document.getElementById('hv-result').innerText = 
+                `A: "${a}"\nB: "${b}"\nSimilarity: (load WASM module to see)`;
+        }
+    </script>
+</body>
+</html>
